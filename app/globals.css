@@ -2,20 +2,39 @@
 @tailwind components;
 @tailwind utilities;
 
+
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
 :root {
   --background: #ffffff;
   --foreground: #171717;
 }
 
-@media (prefers-color-scheme: dark) {
+/* @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
   }
-}
+} */
 
 body {
   color: var(--foreground);
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
+}
+.light-shadow{
+  box-shadow: 0 0 0 1px color(display-p3 .0572 .0889 .1628/.1),0 2px 4px 0 color(display-p3 0 0 0/.06);
+}
+
+.bx-shadow{
+  box-shadow: inset 0px 1px 0px 0px hsla(0, 0%, 100%, 0.03),
+    inset 0px 0px 0px 1px hsla(0, 0%, 100%, 0.03),
+    0px 0px 0px 1px rgba(0, 0, 0, 0.1), 0px 2px 2px 0px rgba(0, 0, 0, 0.1),
+    0px 4px 4px 0px rgba(0, 0, 0, 0.1), 0px 8px 8px 0px rgba(0, 0, 0, 0.1);
+}
+.scrollable-textbox::-webkit-scrollbar {
+  display: none; 
 }
