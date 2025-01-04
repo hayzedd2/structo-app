@@ -3,6 +3,13 @@ import { structSchema } from "@/schema";
 import axios from "axios";
 import { NextRequest } from "next/server";
 
+interface Person{
+  name:string
+  age:number
+  dob: Date
+  address:string
+  country:string
+}
 export async function POST(req: NextRequest) {
   try {
     const reqBody = await req.json();

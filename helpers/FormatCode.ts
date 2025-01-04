@@ -13,7 +13,7 @@ const prettierConfig = {
  */
 const formatCode = async (code: string, lang: "json" | "typescript") => {
   const parser = lang === "json" ? "json" : "typescript";
-  const plugins = lang === "json" ? [] : [parserTypeScript, parserEstree];
+  const plugins = lang === "json" ? [] : [parserTypeScript, parserEstree]
   try {
     return await prettier.format(code, {
       parser,
