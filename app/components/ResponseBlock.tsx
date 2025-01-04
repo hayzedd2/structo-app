@@ -50,7 +50,6 @@ const ResponseBlock = ({ data }: ResponseProps) => {
       <path d="M3 7.8V3m0 0h4.8M3 3l6 6" />
     </svg>
   );
-
   return (
     <>
       <motion.div

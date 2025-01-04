@@ -3,7 +3,7 @@ const config = {
     apiUrl: "http://localhost:8080",
   },
   production: {
-    apiUrl: "https://structo.onrender.com",
+    apiUrl: process.env.NEXT_PUBLIC_API_URL,
   },
 };
 
