@@ -19,8 +19,5 @@ export const useMockData = () => {
       }
       return response.json();
     },
-    onSuccess(data) {
-      console.log(data);
-    },
   });
 };

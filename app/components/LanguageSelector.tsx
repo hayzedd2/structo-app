@@ -43,7 +43,7 @@ const LanguageSelector: React.FC<LanguageSelectProps> = ({
       <button
        type="button"
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center justify-between w-[150px] px-4 py-2 text-[12px] font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black"
+        className="flex items-center justify-between w-[150px] px-4 py-2 text-[12px] font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none "
         aria-haspopup="listbox"
         aria-expanded={isOpen}
       >

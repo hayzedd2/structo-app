@@ -85,7 +85,7 @@ const ResponseBlock = ({ data }: ResponseProps) => {
               readOnly
               spellCheck={false}
               name=""
-              className="flex-grow  selection:bg-[#CCFBF1] scrollable-textbox outline-none text-[12px] border-none focus:outline-none resize-none min-h-[30rem] w-full"
+              className="flex-grow  selection:bg-[#CCFBF1] scrollable-textbox outline-none text-[13px] font-[500] border-none focus:outline-none resize-none min-h-[30rem] w-full"
               id=""
             ></textarea>
           ) : (
@@ -177,10 +177,11 @@ const ExpandedResponseBlock = ({
             <div className="px-4 pb-4 mt-2">
               <textarea
                 value={formattedJson}
+             
                 readOnly
                 spellCheck={false}
                 name=""
-                className="flex-grow selection:bg-[#CCFBF1] scrollable-textbox outline-none text-[12px] border-none focus:outline-none resize-none min-h-[30rem] lg:min-h-[35rem] w-full"
+                className="flex-grow selection:bg-[#CCFBF1] scrollable-textbox outline-none text-[13px] font-[500] border-none focus:outline-none resize-none min-h-[30rem] lg:min-h-[35rem] w-full"
                 id=""
               ></textarea>
             </div>
