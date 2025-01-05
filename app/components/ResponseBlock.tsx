@@ -6,29 +6,48 @@ import Empty from "./Empty";
 interface ResponseProps {
   data: any;
 }
-interface User{
-  userId : string
-  id : number,
-  firstName: string
-  lastName: string
-  userName: string
-  DOB: Date
-  followers: number
-  skills :string[]
-  email: string
-  phoneNumber: string
-  address: string
-  city: string
-  country: string
-  postalCode :string
-  createdAt:Date
-  lastLogin: Date
-  isActive: boolean
-  hasPremium: boolean
-  contributionScores: number[]
+interface User {
+  userId: string;
+  id: number;
+  firstName: string;
+  lastName: string;
+  userName: string;
+  DOB: Date;
+  followers: number;
+  skills: string[];
+  email: string;
+  phoneNumber: string;
+  address: string;
+  city: string;
+  country: string;
+  postalCode: string;
+  createdAt: Date;
+  lastLogin: Date;
+  isActive: boolean;
+  hasPremium: boolean;
+  contributionScores: number[];
 }
 const ResponseBlock = ({ data }: ResponseProps) => {
-  const formattedJson: string = JSON.stringify(data, null, 2);
+  const formatWithWrapping = (json: string, maxLineLength: number = 80) => {
+    if(!json){
+      return null
+    }
+    let formatted = JSON.stringify(json, null, 2);
+    const lines = formatted.split("\n");
+    return lines
+      .map((line) => {
+        if (line.length > maxLineLength) {
+          const indent = line.match(/^\s*/)?.[0] || "";
+          return line.replace(
+            new RegExp(`.{${maxLineLength}}`, "g"),
+            `$&\n${indent}  `
+          );
+        }
+        return line;
+      })
+      .join("\n");
+  };
+  const formattedJson = formatWithWrapping(data) ?? ""
   const [isExpanded, setIsExpanded] = React.useState(false);
   const IconExpand = () => (
     <svg
@@ -52,47 +71,49 @@ const ResponseBlock = ({ data }: ResponseProps) => {
   );
   return (
     <>
-      <motion.div
-        layoutId="responseBlock"
-        transition={{
-          ease: "easeInOut",
-          duration: 0.35,
-        }}
-        className="w-full md:w-[30rem] light-shadow rounded-xl"
-      >
-        {data && data.length > 0 && (
-          <motion.div
-            layoutId="controlsbox"
-            className="header w-full  flex items-center justify-end p-4"
-          >
+      {!isExpanded && (
+        <motion.div
+          layoutId="responseBlock"
+          transition={{
+            ease: "easeInOut",
+            duration: 0.35,
+          }}
+          className="w-full md:w-[30rem] light-shadow rounded-xl"
+        >
+          {data && data.length > 0 && (
             <motion.div
-              layoutId="controls"
-              transition={{
-                ease: "easeInOut",
-                duration: 0.35,
-              }}
-              className="controls flex gap-4"
+              layoutId="controlsbox"
+              className="header w-full  flex items-center justify-end p-4"
             >
-              <CopyToClipBoard text={formattedJson} />
-              <IconExpand />
+              <motion.div
+                layoutId="controls"
+                transition={{
+                  ease: "easeInOut",
+                  duration: 0.35,
+                }}
+                className="controls flex gap-4"
+              >
+                <CopyToClipBoard text={formattedJson} />
+                <IconExpand />
+              </motion.div>
             </motion.div>
-          </motion.div>
-        )}
-        <div className="px-4 pb-4 mt-2">
-          {data ? (
-            <textarea
-              value={formattedJson}
-              readOnly
-              spellCheck={false}
-              name=""
-              className="flex-grow  selection:bg-[#CCFBF1] scrollable-textbox outline-none text-[13px] font-[500] border-none focus:outline-none resize-none min-h-[30rem] w-full"
-              id=""
-            ></textarea>
-          ) : (
-            <Empty />
           )}
-        </div>
-      </motion.div>
+          <div className="px-4 pb-4 mt-2">
+            {data ? (
+              <textarea
+                value={formattedJson}
+                readOnly
+                spellCheck={false}
+                name=""
+                className="flex-grow  selection:bg-[#CCFBF1] scrollable-textbox outline-none text-[13px] font-[500] border-none focus:outline-none resize-none min-h-[30rem] w-full"
+                id=""
+              ></textarea>
+            ) : (
+              <Empty />
+            )}
+          </div>
+        </motion.div>
+      )}
       <ExpandedResponseBlock
         setIsExpanded={setIsExpanded}
         formattedJson={formattedJson}
@@ -137,19 +158,22 @@ const ExpandedResponseBlock = ({
   return (
     <AnimatePresence>
       {isExpanded && (
-        <motion.div animate={{
-          backgroundColor : "#333333"
-        }}
-        exit={{
-          transition:{
-            ease : "easeInOut",
-            duration : 2
-          },
-          backgroundColor : "transparent"
-        }}
-        transition={{
-          ease : "easeInOut",
-        }} className="min-h-screen px-4 absolute flex items-center justify-center w-full top-0">
+        <motion.div
+          animate={{
+            backgroundColor: "#333333",
+          }}
+          exit={{
+            transition: {
+              ease: "easeInOut",
+              duration: 2,
+            },
+            backgroundColor: "transparent",
+          }}
+          transition={{
+            ease: "easeInOut",
+          }}
+          className="min-h-screen px-4 absolute flex items-center justify-center w-full top-0"
+        >
           <motion.div
             transition={{
               ease: "easeInOut",
@@ -177,7 +201,6 @@ const ExpandedResponseBlock = ({
             <div className="px-4 pb-4 mt-2">
               <textarea
                 value={formattedJson}
-             
                 readOnly
                 spellCheck={false}
                 name=""
