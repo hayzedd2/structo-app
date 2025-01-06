@@ -32,7 +32,7 @@ const InterfaceForm = () => {
   const { mutate, data, isPending, error } = useMockData();
   const onSubmit = async (data: z.infer<typeof structSchema>) => {
     try {
-      const formattedCode = await formatCode(data.interface, "typescript");
+      const formattedCode = await formatCode(data.interface.toLowerCase(), "typescript");
       data.interface = formattedCode;
       mutate(data);
     } catch (err) {
