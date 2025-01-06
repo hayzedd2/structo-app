@@ -6,48 +6,8 @@ import Empty from "./Empty";
 interface ResponseProps {
   data: any;
 }
-interface User {
-  userId: string;
-  id: number;
-  firstName: string;
-  lastName: string;
-  userName: string;
-  DOB: Date;
-  followers: number;
-  skills: string[];
-  email: string;
-  phoneNumber: string;
-  address: string;
-  city: string;
-  country: string;
-  postalCode: string;
-  createdAt: Date;
-  lastLogin: Date;
-  isActive: boolean;
-  hasPremium: boolean;
-  contributionScores: number[];
-}
 const ResponseBlock = ({ data }: ResponseProps) => {
-  const formatWithWrapping = (json: string, maxLineLength: number = 80) => {
-    if(!json){
-      return null
-    }
-    let formatted = JSON.stringify(json, null, 2);
-    const lines = formatted.split("\n");
-    return lines
-      .map((line) => {
-        if (line.length > maxLineLength) {
-          const indent = line.match(/^\s*/)?.[0] || "";
-          return line.replace(
-            new RegExp(`.{${maxLineLength}}`, "g"),
-            `$&\n${indent}  `
-          );
-        }
-        return line;
-      })
-      .join("\n");
-  };
-  const formattedJson = formatWithWrapping(data) ?? ""
+  const formattedJson = JSON.stringify(data, null, " ");
   const [isExpanded, setIsExpanded] = React.useState(false);
   const IconExpand = () => (
     <svg
@@ -105,7 +65,7 @@ const ResponseBlock = ({ data }: ResponseProps) => {
                 readOnly
                 spellCheck={false}
                 name=""
-                className="flex-grow  selection:bg-[#CCFBF1] scrollable-textbox outline-none text-[13px] font-[500] border-none focus:outline-none resize-none min-h-[30rem] w-full"
+                className="flex-grow  selection:bg-[#CCFBF1] scrollable-textbox outline-none text-[13px] font-[400] border-none focus:outline-none resize-none min-h-[30rem] w-full"
                 id=""
               ></textarea>
             ) : (

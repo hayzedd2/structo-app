@@ -17,7 +17,9 @@ export const useMockData = () => {
         const error = await response.json();
         throw new Error(error.message);
       }
+      
       return response.json();
     },
+    retry : 3
   });
 };

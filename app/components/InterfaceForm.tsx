@@ -87,7 +87,7 @@ const InterfaceForm = () => {
                 {...register("interface")}
                 placeholder="Your interface or type here."
                 spellCheck={false}
-                className="flex-grow selection:bg-[#CCFBF1] outline-none focus:outline-none border-none text-[13px] font-[500] scrollable-textbox  resize-none min-h-[15rem] w-full"
+                className="flex-grow selection:bg-[#CCFBF1] outline-none focus:outline-none border-none text-[13px] font-[400] scrollable-textbox  resize-none min-h-[15rem] w-full"
                 id=""
               ></textarea>
               <div className="text-[12px] mt-4">
