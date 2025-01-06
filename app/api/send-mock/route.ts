@@ -20,16 +20,18 @@ export async function POST(req: NextRequest) {
         headers: {
           "Content-Type": "application/json",
         },
-        timeout: 10000,
-        validateStatus: (status) => status < 500,
       }
     );
     return Response.json(response.data);
   } catch (error: any) {
-    if (error.code === "ECONNABORTED") {
+    if (error.code == "ERR_BAD_RESPONSE") {
       return Response.json(
-        { message: "Request timed out, please try again" },
-        { status: 408 }
+        {
+          message: "Server is being warmed up, please try again.",
+        },
+        {
+          status: 400,
+        }
       );
     }
     return Response.json(
